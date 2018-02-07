@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+      template="../../WEB-INF/templates/newTemplate2.xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+    <ui:define name="content">
+            <div id="right_column">
+                <h2>Koszyk</h2>
+                <ui:repeat var="cartItem" value="${cart.items}" varStatus="iter">
+                     <c:set var="new" value="${cartItem.product}"/>
+                     <div class="book">
+                            <a href="book?id=${new.isbn}" class="book_title">${new.tytul}</a>
+                        <br />
+                        <a href="category?kat=${new.idKategori}" class="cat">${controller.getKategorieById(new.idKategori)}</a>
+                            
+                              <h:panelGroup rendered="${n.isbn == new.isbn}">
+                                 <p class="got">W koszyku</p>
+                              </h:panelGroup>
+                            <a href="book?id=${new.isbn}"><img src="${initParam.bookImagePath}${new.isbn}.jpg"/></a>
+                            <ui:repeat var="tags" value="${controller.getTagiList(new.isbn)}">
+                                <a href="category?tag=${tags[0]}" class="tags">${tags[1]}</a>
+                            </ui:repeat>
+                            <h:form >
+                                <h:commandButton action="#{controller.delFromCart(new.isbn)}" value="Odłóż" />
+                            </h:form>
+                    </div>
+                </ui:repeat>
+                <h:panelGroup rendered="#{cart.numberOfItems gt 0}" >
+                    <h:form>
+                        <h:commandButton id="submit" action="#{controller.zamow()}" value="Akceptuj"/>
+                    </h:form>
+                </h:panelGroup>
+                <h:panelGroup rendered="#{cart.numberOfItems lt 1}">
+                    <h2>Koszyk jest pusty</h2>
+                </h:panelGroup>
+            </div>
+    </ui:define>
+</ui:composition>

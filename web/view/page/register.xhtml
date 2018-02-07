@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+      template="../../WEB-INF/templates/newTemplate2.xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+    <ui:define name="content">
+        <div id="right_column">
+            <div class="modulr">
+                    <h2>Rejestracja</h2>
+                    <h:message for="reg" infoStyle="margin-left:0px;font-size:28px;decoration:none;color:#6677bb;display:block" />
+                    <h:form id="reg">
+                        Imie:<h:inputText id="imie" value="#{userlogin.imie}" /><br />
+                        <h:message for="imie" errorStyle="margin-left:0px;font-size:14px;decoration:none;color:red;display:block" />
+                        Nazwisko:<h:inputText id="nazw" value="#{userlogin.nazw}" /><br />
+                        <h:message for="nazw" errorStyle="margin-left:0px;font-size:14px;decoration:none;color:red;display:block" />
+                        Miasto:<h:inputText id="miasto" value="#{userlogin.miasto}" /><br />
+                        <h:message for="miasto" errorStyle="margin-left:0px;font-size:14px;decoration:none;color:red;display:block" />
+                        Ulica:<h:inputText id="ulica" value="#{userlogin.ulica}" /><br />
+                        <h:message for="ulica" errorStyle="margin-left:0px;font-size:14px;decoration:none;color:red;display:block" />
+                        Haslo:<h:inputSecret id="haslo" value="#{userlogin.haslo}" /><br />
+                        <h:message for="haslo" errorStyle="margin-left:0px;font-size:14px;decoration:none;color:red;display:block" />
+                        Powtórz haslo:<h:inputSecret id="haslop" value="#{userlogin.haslop}" /><br />
+                        <h:message for="haslop" errorStyle="margin-left:0px;font-size:14px;decoration:none;color:red;display:block" />
+                        E-mail:<h:inputText id="maill" value="#{userlogin.maill}" /><br />
+                        <h:message for="maill" errorStyle="margin-left:0px;font-size:14px;decoration:none;color:red;display:block" />
+                        <h:commandButton id="submit" action="#{userlogin.register()}" value="Zarejestruj" />
+                        
+                    </h:form>
+                    
+                </div>
+            </div>
+    </ui:define>
+</ui:composition>

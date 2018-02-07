@@ -1,0 +1,59 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+      template="../../WEB-INF/templates/newTemplate2.xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+        <ui:define name="content">
+            <div id="right_column">
+            <ui:repeat var="new" value="#{controller.getWypozyczeniaById(user.idCzytelnika)}" >
+                <div class="book">
+                    <a href="book?id=${new[0]}" class="book_title">${new[1]}</a>
+                <br />
+                <a href="category?kat=${new[2]}" class="cat">${controller.getKategorieById(new[2])}</a>
+                    <p class="got">
+                        <h:panelGroup rendered="${new[3] == 1}">
+                            Przygotowywana
+                        </h:panelGroup>
+                        <h:panelGroup rendered="${new[3] == 2}">
+                            Gotowa do odbioru
+                        </h:panelGroup>
+                        <h:panelGroup rendered="${new[3] == 3}">
+                            Na półce czytelnika
+                        </h:panelGroup>
+                        <h:panelGroup rendered="${new[3] == 4}">
+                            Przetrzymana
+                        </h:panelGroup>
+                        <h:panelGroup rendered="${new[3] == 5}">
+                            Oddana
+                        </h:panelGroup>
+                    </p>
+                    <a href="book?id=${new[0]}"><img src="${initParam.bookImagePath}${new[0]}.jpg"/></a>
+                    <p class="got">Data wypozyczenia: </p>
+                    <p class="got">${new[4]}</p>
+                    <p class="got">Data oddania: </p>
+                    <h:panelGroup rendered = "${new[3] == 5}">
+                        <p class="got">${new[5]}</p>
+                    </h:panelGroup>
+                    <h:panelGroup rendered="${new[3] == 2}">
+                        <h:form>
+                            <h:commandButton id="submit" action="#{controller.change_status(new[0],new[4],3)}" value="Odbierz"/>
+                        </h:form>
+                    </h:panelGroup>
+                    <h:panelGroup rendered="${new[3] == 3}">
+                        <h:form>
+                            <h:commandButton id="submit" action="#{controller.change_status(new[0],new[4],5)}" value="Zwróć"/>
+                        </h:form>
+                    </h:panelGroup>
+                    <h:panelGroup rendered="${new[3] == 4}">
+                        <h:form>
+                            <h:commandButton id="submit" action="#{controller.change_status(new[0],new[4],5)}" value="Zwróć"/>
+                        </h:form>
+                    </h:panelGroup>
+                    </div>
+                </ui:repeat>
+                
+                </div>
+        </ui:define>
+</ui:composition>

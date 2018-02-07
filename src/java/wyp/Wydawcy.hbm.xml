@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2016-05-30 11:24:50 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="wyp.Wydawcy" table="wydawcy" catalog="wypozyczalnia" optimistic-lock="version">
+        <id name="idWydawcy" type="java.lang.Integer">
+            <column name="id_wydawcy" />
+            <generator class="identity" />
+        </id>
+        <property name="nazwa" type="string">
+            <column name="nazwa" length="16" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

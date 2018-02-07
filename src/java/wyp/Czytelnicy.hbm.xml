@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2016-05-30 11:24:50 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="wyp.Czytelnicy" table="czytelnicy" catalog="wypozyczalnia" optimistic-lock="version">
+        <id name="idCzytelnika" type="java.lang.Integer">
+            <column name="id_czytelnika" />
+            <generator class="identity" />
+        </id>
+        <property name="imie" type="string">
+            <column name="imie" length="24" not-null="true" />
+        </property>
+        <property name="nazwisko" type="string">
+            <column name="nazwisko" length="24" not-null="true" />
+        </property>
+        <property name="ulica" type="string">
+            <column name="ulica" length="16" not-null="true" />
+        </property>
+        <property name="miasto" type="string">
+            <column name="miasto" length="16" not-null="true" />
+        </property>
+        <property name="haslo" type="string">
+            <column name="haslo" length="30" not-null="true" />
+        </property>
+        <property name="blokada" type="boolean">
+            <column name="blokada" not-null="true" />
+        </property>
+        <property name="kara" type="float">
+            <column name="kara" precision="12" scale="0" not-null="true" />
+        </property>
+        <property name="aktywny" type="boolean">
+            <column name="aktywny" not-null="true" />
+        </property>
+        <property name="stopien" type="int">
+            <column name="stopien" not-null="true" />
+        </property>
+        <property name="mail" type="string">
+            <column name="mail" length="16" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

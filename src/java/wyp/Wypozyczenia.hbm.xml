@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2016-05-30 11:24:50 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="wyp.Wypozyczenia" table="wypozyczenia" catalog="wypozyczalnia" optimistic-lock="version">
+        <composite-id name="id" class="wyp.WypozyczeniaId">
+            <key-property name="idCzytelnika" type="int">
+                <column name="id_czytelnika" />
+            </key-property>
+            <key-property name="isbn" type="int">
+                <column name="isbn" />
+            </key-property>
+            <key-property name="dataWypozyczenia" type="date">
+                <column name="data_wypozyczenia" length="10" />
+            </key-property>
+        </composite-id>
+        <property name="dataOddania" type="date">
+            <column name="data_oddania" length="10" />
+        </property>
+        <property name="status" type="int">
+            <column name="status" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

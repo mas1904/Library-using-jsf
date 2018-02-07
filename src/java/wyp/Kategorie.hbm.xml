@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2016-05-30 11:24:50 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="wyp.Kategorie" table="kategorie" catalog="wypozyczalnia" optimistic-lock="version">
+        <id name="idKategori" type="java.lang.Integer">
+            <column name="id_kategori" />
+            <generator class="identity" />
+        </id>
+        <property name="nazwa" type="string">
+            <column name="nazwa" length="16" not-null="true" />
+        </property>
+        <property name="idRodzica" type="java.lang.Integer">
+            <column name="id_rodzica" />
+        </property>
+    </class>
+</hibernate-mapping>

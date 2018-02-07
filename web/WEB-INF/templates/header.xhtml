@@ -1,0 +1,78 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    
+<header>
+                <div id="logo">
+                    LOGO
+                </div>
+                <div id="header_medium">
+                    <div id="top_medium">
+                        Wypożyczalnia ksiązek, do wyboru do koloru
+                    </div>
+                    
+                    <div id="menu">
+                        <a href="index">Strona główna</a>
+                        <a href="category?kat=1">Kategorie</a>
+                        <a href="contact">Kontakt</a>
+                        
+                    </div>
+                </div>
+                <div id="bin">
+                    <div id="left_r">
+                        <div id="login_panel">
+                            
+                            <h:panelGroup rendered="#{empty user}">
+                                <h:form id="loginp">
+                                    E-mail<h:inputText id="login" value="#{userlogin.username}" />
+                                    Hasło<h:inputText id="password" value="#{userlogin.password}" />
+                                    <h:commandButton type="submit" action="#{userlogin.login()}" value="Zaloguj"/>
+                                    
+                                </h:form>
+                                
+                                <a href="register">Zarejestruj</a>
+                                <h:message for="login" errorStyle="margin-left:0px;font-size:14px;decoration:none;color:red;display:block" />
+                            </h:panelGroup>
+                            <c:if test="#{not empty user}">
+                                <p>Jesteś zalogowany jako #{user.imie} #{user.nazwisko}</p>
+                                <p><c:if test="#{user.stopien == 2}">Pracownik</c:if></p>
+                                <p><c:if test="#{user.stopien == 3}">Administrator</c:if></p>
+                                <h:form>
+                                    <h:commandLink value="Wyloguj" action="#{userlogin.logout()}" />
+                                </h:form>
+                            </c:if>
+                        </div>
+                    </div>
+                    <div id="right_r">
+                        <div id="language">
+                            <h:form>
+                                <h:commandLink action="#{controller.changeStyle(0)}" value="Biało-czarny " /> 
+                                <h:commandLink action="#{controller.changeStyle(1)}" value="Czarno-biały" />
+                                    <a href="pl">PL</a>
+                                    <a href="eng">ENG</a>
+                            </h:form>
+                        </div>
+                        
+                        <div id="settings">
+                            <c:if test="${not empty user}">
+                                    <a href="bin">Koszyk</a>
+                                    <a href="library">Półka</a>
+                                    <c:if test="${user.stopien > 1}">
+                                        <a href="adminusers">Administracja</a>
+                                    </c:if>"
+                            </c:if>
+                        </div>
+                        
+                        <div id="search">
+                            <h:form>
+                                <h:inputText value="#{bookC.search}" />
+                                <h:commandButton action="#{bookC.sear}" value="Szukaj" />
+                            </h:form>
+                        </div>
+                    </div>
+                </div>
+            </header>
+    
+</ui:composition>

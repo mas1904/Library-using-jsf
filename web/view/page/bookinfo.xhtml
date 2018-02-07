@@ -1,0 +1,71 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+      template="../../WEB-INF/templates/newTemplate2.xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+    <ui:define name="content">
+        <div id="right_column">
+            <ui:repeat var="new" value="${controller.getKsiazkaById(request.getParameter('id'))}">
+                <div id="bookinfo">
+                    <div id="left_bi">
+                        <p class="book_title">${new.tytul}</p>
+                        <a href="category?kat=${new.idKategori}" class="cat">${controller.getKategorieById(new.idKategori)}</a>
+                        <br />
+                        <img src="${initParam.bookImagePath}${new.isbn}.jpg" />
+                        <div id="info">
+                            <p class="about">
+                                ${new.opis}
+                            </p>
+                                <ui:repeat var="file" value="${controller.files}" rendered="#{controller.getFiless() == true}">
+                                    <h:outputLink value="${initParam.fileImagePath}${new.isbn}/${file.id.nazwa}.${file.roz}" class="files">
+                                    ${file.id.nazwa}
+                                    </h:outputLink>
+                                </ui:repeat>
+                            
+                            <p> ISBN-${new.isbn} </p>
+                            <h:panelGroup rendered="${new.stan == 0}">
+                                <p class="status_not">Brak w magaznie</p>
+                                <h:form>
+                                    <h:commandButton action="#{controller.addToQueue(new.isbn)}" value="Zapisz się w kolejce" />
+                                </h:form>
+                            </h:panelGroup>
+                            <h:panelGroup rendered="${new.stan lt 4 and new.stan gt 0}">
+                                <p class="status_last">Ostatnie sztuki</p>
+                                <h:form>
+                                    <h:commandButton action="#{controller.addToCart(new.isbn)}" value="Wypożycz" />
+                                </h:form>
+                            </h:panelGroup>
+                            <h:panelGroup rendered="${new.stan gt 3}">
+                                <p class="status_good">W magaznie</p>
+                                <h:form>
+                                    <h:commandButton action="#{controller.addToCart(new.isbn)}" value="Wypożycz" />
+                                </h:form>
+                            </h:panelGroup>
+                        </div>
+                    </div>
+                    <div id="right_bi">
+                        <h2 class="bi_big">Autor</h2>
+                        <p>
+                        <ui:repeat var="aut" value="${controller.getAutorzyList(new.isbn)}">
+                            <a href="category?aut=${aut[0]}" class="tags">${aut[1]} ${aut[2]}</a>,
+                        </ui:repeat>
+                        </p>
+                        <h2 class="bi_big">Wydawca</h2>
+                        <ui:repeat var="wydawca" value="${controller.getWydawcyById(new.idWydawcy)}">
+                            <p><a href="category?wyd=${new.idWydawcy}">${wydawca}</a></p>
+                        </ui:repeat>
+                        <h2 class="bi_big">Tagi</h2>
+                        <p>
+                        <ui:repeat var="tags" value="${controller.getTagiList(new.isbn)}">
+                                <a href="category?tag=${tags[0]}" class="tags">${tags[1]}</a>
+                        </ui:repeat>
+                        </p>
+                    </div>
+                </div>
+            </ui:repeat>                
+        </div>
+    </ui:define>
+</ui:composition>

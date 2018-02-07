@@ -1,0 +1,143 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+      template="../../WEB-INF/templates/newTemplate3.xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    
+    <ui:define name="content">
+            <div id="right_column">
+                <div class="modul">
+                    <h2>Dodaj książkę</h2>
+                    <h:form enctype="multipart/form-data">
+                        Tytuł:
+                        <h:inputText id="title" value="${bookC.title}"/><br />
+                        ISBN:<h:inputText id="isbn" value="${bookC.isbn}"/><br />
+                        Ilość:<h:inputText id="ilosc" value="${bookC.ilosc}"/><br />
+                        Dodaj obraz: <h:inputFile value="#{bookC.obraz}" /> <br />
+                        Dodatkowe pliki:<br />
+                        <c:forEach var="i" begin="0" end="#{bookC.filesC}">
+                            <h:inputFile  value="#{bookC.files[i]}" /> <br />
+                            Opis:<h:inputText value="#{bookC.filn[i]}" /> <br />
+                        </c:forEach>
+                        <h:commandButton action="#{bookC.addC}" value="+" /> <br />
+                        Opis:<br /><h:inputTextarea id="opis" value="${bookC.opis}"/><br />
+                        Autorzy:
+                        <h:selectManyCheckbox value="#{bookC.autorzy}">
+                            <f:selectItems value="#{controller.getAutorzyList()}"  var="c"
+                            itemLabel="#{c.imie;c.nazwisko}" itemValue="#{c.idAutora}" />
+                        </h:selectManyCheckbox>
+                        <br />
+                        Wydawca: <h:outputText value="#{controller.getWydawcyById(bookC.wydawca)}" />
+                        <h:selectOneMenu value="#{bookC.wydawca}">
+                            <f:selectItems value="#{controller.getWydawcyList()}"  var="c"
+                            itemLabel="#{c.nazwa}" itemValue="#{c.idWydawcy}" />
+                        </h:selectOneMenu>
+                        <br />
+                        Tagi
+                        <h:selectManyCheckbox value="#{bookC.tagi}">
+                            <f:selectItems value="#{controller.getTagiLista()}"  var="c"
+                            itemLabel="#{c.nazwa}" itemValue="#{c.idTagu}" />
+                        </h:selectManyCheckbox>
+                        <br />
+                        Kateogria: <h:outputText value="#{controller.getKategorieById(bookC.kategoria)}" />
+                        <h:selectOneMenu value="#{bookC.kategoria}">
+                            <f:selectItems value="#{controller.getKategorieList()}"  var="c"
+                            itemLabel="#{c.nazwa}" itemValue="#{c.idKategori}" />
+                        </h:selectOneMenu>
+                        <br />
+                        <h:commandButton value="Dodaj" action="#{bookC.dodaj}" />
+                        <h:commandButton value="Edytuj" action="#{bookC.edytuj}" />
+                        <h:commandButton value="Wyczyść" action="#{bookC.czysc}" />
+                    </h:form>
+
+                </div>
+                <div class="modul">
+                    <h2>Książki</h2>
+                    <table border="0" cellspacing="5">
+                        <thead>
+                            <tr>
+                                <th>Tytuł</th>
+                                <th>ISBN</th>
+                                <th>Ilość</th>
+                                <th>Stan</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <ui:repeat var="book" value="${controller.getKsiazki()}">
+                            <tr>
+                                <td><a href="book?id=${book.isbn}">${book.tytul}</a></td>
+                                <td>${book.isbn}</td>
+                                <td>${book.ilosc}</td>
+                                <td>${book.stan}</td>
+                                <td>
+                                    <h:form >
+                                        <h:commandButton action="#{bookC.delete}" value="Usuń" >
+                                            <f:param value="#{book.isbn}" name="isbn" />
+                                        </h:commandButton>
+                                        |
+                                        <h:commandButton action="#{bookC.edytujp(book.isbn)}" value="Edytuj" />
+                                    </h:form>
+                                </td>
+                            </tr>
+                            </ui:repeat>
+                            
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modul">
+                    <h2>Wypożyczenia</h2>
+                    <table border="0" cellspacing="5">
+                        <thead>
+                            <tr>
+                                <th>Id Czytelnika</th>
+                                <th>ISBN</th>
+                                <th>Data wypożyczenia</th>
+                                <th>Data oddania</th>
+                                <th>Status</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <ui:repeat var="book" value="${controller.getWypozyczenia()}">
+                            <tr>
+                                <td><a href="user?id=${usrnt.idCzytelnika}">${book.id.idCzytelnika}</a></td>
+                                <td>${book.id.isbn}</td>
+                                <td>${book.id.dataWypozyczenia}</td>
+                                <td>${book.dataOddania}</td>
+                                <td><p class="got">
+                                    <h:panelGroup rendered="${book.status == 1}">
+                                        Przygotowywana
+                                    </h:panelGroup>
+                                    <h:panelGroup rendered="${book.status == 2}">
+                                        Gotowa do odbioru
+                                    </h:panelGroup>
+                                    <h:panelGroup rendered="${book.status == 3}">
+                                        Na półce czytelnika
+                                    </h:panelGroup>
+                                    <h:panelGroup rendered="${book.status == 4}">
+                                        Przetrzymana
+                                    </h:panelGroup>
+                                    <h:panelGroup rendered="${book.status == 5}">
+                                        Oddana
+                                    </h:panelGroup>
+                                </p></td>
+                                <td>
+                                    <h:form>
+                                            <h:panelGroup rendered="#{book.status==1}" >
+                                                <h:commandButton action="#{controller.change_status(book.id.idCzytelnika,book.id.isbn, book.id.dataWypozyczenia, 2)}" value="Gotowa" />
+                                            </h:panelGroup>
+                                    </h:form>
+                                </td>
+                            </tr>
+                            </ui:repeat>
+                            
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+    </ui:define>
+</ui:composition>

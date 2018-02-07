@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+<div id="left_column">
+    <div id="category_list">
+        <p:tree value="#{controller.root}" var="node" style="width:100%"
+                dynamic="true" styleClass="tree"
+                >
+            <p:treeNode styleClass="tree_node" >
+                <h:outputLink value="category?kat=#{node.idKategori}" >
+                    #{node.nazwa}
+                </h:outputLink>
+                
+                    
+                
+            </p:treeNode>
+        <p:ajax event="select" listener="#{controller.onNodeSelect}"></p:ajax>
+        </p:tree>
+        
+    </div>
+    <h2>Tagi</h2>
+    <div id="category_list">
+        <ui:repeat var="cat" value="${controller.tagiLista}">
+            <a href="category?tag=${cat.idTagu}">${cat.nazwa}</a>
+        </ui:repeat>
+    </div>
+</div>
+</ui:composition>

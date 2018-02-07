@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+  <session-factory>
+    <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+    <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+    <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/wypozyczalnia</property>
+    <property name="hibernate.connection.username">root</property>
+    <property name="hibernate.current_session_context_class">thread</property>
+    <property name="hibernate.query.factory_class">org.hibernate.hql.internal.ast.ASTQueryTranslatorFactory</property>
+    <property name="hibernate.show_sql">true</property>
+    <mapping resource="wyp/Wydawcy.hbm.xml"/>
+    <mapping resource="wyp/Autorzy.hbm.xml"/>
+    <mapping resource="wyp/Pliki.hbm.xml"/>
+    <mapping resource="wyp/Tagi.hbm.xml"/>
+    <mapping resource="wyp/TagiK.hbm.xml"/>
+    <mapping resource="wyp/Kategorie.hbm.xml"/>
+    <mapping resource="wyp/Wiadomosci.hbm.xml"/>
+    <mapping resource="wyp/Ksiazki.hbm.xml"/>
+    <mapping resource="wyp/Czytelnicy.hbm.xml"/>
+    <mapping resource="wyp/Wypozyczenia.hbm.xml"/>
+    <mapping resource="wyp/Kolejka.hbm.xml"/>
+    <mapping resource="wyp/KsiazkiAutorzy.hbm.xml"/>
+  </session-factory>
+</hibernate-configuration>

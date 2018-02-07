@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2016-05-30 11:24:50 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="wyp.Ksiazki" table="ksiazki" catalog="wypozyczalnia" optimistic-lock="version">
+        <id name="isbn" type="int">
+            <column name="ISBN" />
+            <generator class="assigned" />
+        </id>
+        <property name="tytul" type="string">
+            <column name="tytul" length="38" not-null="true" />
+        </property>
+        <property name="idKategori" type="int">
+            <column name="id_kategori" not-null="true" />
+        </property>
+        <property name="stan" type="int">
+            <column name="stan" not-null="true" />
+        </property>
+        <property name="ilosc" type="int">
+            <column name="ilosc" not-null="true" />
+        </property>
+        <property name="dataDodania" type="date">
+            <column name="data_dodania" length="10" not-null="true" />
+        </property>
+        <property name="idWydawcy" type="int">
+            <column name="id_wydawcy" not-null="true" />
+        </property>
+        <property name="opis" type="string">
+            <column name="opis" length="300" />
+        </property>
+    </class>
+</hibernate-mapping>

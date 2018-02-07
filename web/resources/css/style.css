@@ -1,0 +1,362 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 2016-05-04, 11:40:46
+    Author     : Łukasz
+*/
+body {
+    text-align: center;
+    margin: 0 auto;
+    width: 1320px;
+    font-family: Calibri;
+}
+
+header {
+    height: 150px;
+    background: #aaa;
+    text-decoration: none;
+}
+header a {
+    color: white;
+}
+#message {
+    max-height: 375px;
+    background: #333;
+    text-align: center;
+}
+#message p.data {
+    text-align: right;
+    margin: 0;
+    float: right;
+}
+#news {
+    height: 460px;
+    background: #eee;
+    text-align: center;
+}
+#news h1 {
+    margin: 0;
+    
+}
+footer {
+    height: 200px;
+    background: #888;
+    clear:left;
+}
+
+#logo {
+    height: 140px;
+    width: 300px;
+    margin: 5px;
+    float: left;
+    background: #111;
+    font-size: 35px;
+    color: #ccaa00;
+}
+#header_medium {
+    float: left;
+    height: 150px;
+    width: 550px;
+    background: #222;
+}
+#top_medium {
+    width: 100%;
+    height: 100px;
+    color: white;
+    font-size: 38px;
+    font-family: 'Lucida Calligraphy', cursive;
+}
+#menu {
+    width: 100%;
+    height: 50px;
+    float: left;
+    background: #bbb;
+    font-size: 24px;
+}
+#menu a{
+    background: #000033;
+    padding: 5px;
+    margin: 5px 0;
+    display: inline-block;
+}
+#login_panel {
+    width: 100%;
+    height: 100px;
+    float: left;
+    padding: 5px 0;
+}
+#left_r {
+    width: 200px;
+    height: 100%;
+    background: #bbb;
+    float: left;
+}
+#right_r {
+    width: 250px;
+    height: 100%;
+    background: #888;
+    float: left;
+}
+#bin {
+    float: right;
+    width: 450px;
+    height: 150px;
+    background: #333;
+}
+#language {
+    font-size: 14px;
+    text-align: right;
+    float: right; 
+    width: 100%;
+}
+#search {
+    float: right;
+    width: 100%;
+    height: 50px;
+    margin: 5px 0;
+}
+#settings {
+    width: 100%;
+    min-height: 100px;
+}
+#settings a {
+    text-align: center;
+    background: #222; 
+    display: inline-block;
+    float: right;
+    height: 25px;
+    padding: 25px 5px;
+}
+a#bin {
+    margin: 5px;
+    float: right;
+    height: 80px;
+    width: 80px;
+    background: #111;
+}
+
+article {
+    width: 800px;
+    height: 120px;
+    border-bottom: 3px #7788cc solid;
+    text-align: justify;    
+    margin: auto;
+    background: #eee;
+}
+.title {
+    width: 400px;
+    height: 20px;
+    background: #222;
+    border-bottom-right-radius: 20px;
+    color: #ddd;
+    padding: 10px;
+}
+article p.mess {
+    margin: 15px ;
+}
+#news_cont {
+    margin: auto;
+    width: 1050px;
+    
+}
+
+.book {
+    min-height: 420px;
+    max-height: 420px;
+    width: 200px;
+    padding-top: 10px;
+    float: left;
+    margin: 5px;
+    -webkit-box-shadow: 0 0 1px 1px rgba(100,100,100,255);
+box-shadow: 0 0 1px 1px rgba(100,100,100,255);
+}
+p.got{
+    margin: 0 0 0 0;
+    background: #7788cc;
+    color: #eee;
+}
+.book_title {
+    font-size: 20px;
+    min-height: 50px;
+    display: block;
+    color: #ff9900;
+}
+.book img {
+    height: 200px;
+    width: 180px;
+}
+
+.book a.cat {
+    min-width: 40px;
+    font-size: 16px;
+    text-decoration: none;
+    color: #0099ff;
+    display: block;
+}
+.book a.tags {
+   font-size: 16px;
+    text-decoration: none;
+    color: #0099ff;    
+}
+
+p.status_good {
+    color: #66aa55;    
+}
+p.status_last {
+    color: #ccaa00;   
+}
+p.status_not {
+    color: #ff6655;   
+}
+
+#left_column {
+    width: 400px;
+    min-height: 500px;
+    float: left;
+    background: #444;
+    text-align: left;
+    padding-left: 10px;
+}
+
+#right_column {
+    width: 880px;
+    min-height: 500px;
+    float: left;
+    padding: 10px 0 0 30px;
+}
+
+#left_column a {
+    font-size: 34px;
+    display: block;
+    color: #33ccff;
+    text-decoration: none;
+    border-bottom: 1px #33ccff solid;
+    -webkit-transition: color 300ms ease-in-out;
+-moz-transition: color 300ms ease-in-out;
+-ms-transition: color 300ms ease-in-out;
+-o-transition: color 300ms ease-in-out;
+transition: color 300ms ease-in-out;
+}
+
+#left_column a:hover {
+    color: #ffcc33;
+    -webkit-transition: color 300ms ease-in-out;
+-moz-transition: color 300ms ease-in-out;
+-ms-transition: color 300ms ease-in-out;
+-o-transition: color 300ms ease-in-out;
+transition: color 300ms ease-in-out;
+    
+}
+.ui-tree-toggler {
+    margin-top:16px;
+}
+.ui-widget content {
+    background-image: none;
+}
+.ui-icon {
+    background-color: white;
+    
+}
+.ui-tree {
+    width:100%;
+}
+.tree {
+    background:none;
+    border: 0;
+    width:100%;
+}
+
+
+
+#bookinfo {
+    width: 800px;
+    margin: auto;
+}
+
+#bookinfo img{
+    width: 250px;
+    height: 300px;
+    float: left;
+    display: block;
+}
+
+#left_bi {
+    float: left;
+    width: 80%;
+    height: 100%;
+    
+}
+#right_bi {
+    float: left;
+    width: 20%;
+    height: 100%;
+}
+
+#bookinfo form{
+    clear: left;
+    
+}
+
+#bookinfo div#info {
+    float: left;
+    min-height: 300px;
+    width: 390px;
+}
+#bookinfo div#info p.about{
+    text-align: justify;
+    margin-left: 10px;
+}
+#bookinfo .book_title {
+    font-size: 30px;
+    margin: 10px;
+}
+
+#bookinfo a.cat {
+    font-size: 22px;
+    text-decoration: none;
+    color: #3333ff;
+    clear: left;
+    width: 100%;
+}
+
+#bookinfo a.files {
+    display: block;
+    text-align: left;
+    text-decoration: none;
+    color: #7788cc;
+    font-size: 22px;
+    margin-left: 10px;
+}
+
+#accept {
+    clear: left;
+}
+
+.modul {
+    width: 430px;
+    float: left;
+    border-left: #33ccff 1px solid;
+}
+
+.modul:first-child {
+    border-left: none;
+}
+
+.modul form {
+    text-align: left;    
+    margin: 5px;
+}
+
+.modulr {
+    width: 430px;
+    float: left;
+    text-align: left;
+    font-size: 24px;
+}
+
+.modulr input {
+    float: right;
+}

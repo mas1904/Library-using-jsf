@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd">
+<hibernate-reverse-engineering>
+  <schema-selection match-catalog="wypozyczalnia"/>
+  <table-filter match-name="czytelnicy"/>
+  <table-filter match-name="tagi"/>
+  <table-filter match-name="kolejka"/>
+  <table-filter match-name="wiadomosci"/>
+  <table-filter match-name="wypozyczenia"/>
+  <table-filter match-name="ksiazki_autorzy"/>
+  <table-filter match-name="ksiazki"/>
+  <table-filter match-name="pliki"/>
+  <table-filter match-name="wydawcy"/>
+  <table-filter match-name="tagi_k"/>
+  <table-filter match-name="kategorie"/>
+  <table-filter match-name="autorzy"/>
+</hibernate-reverse-engineering>

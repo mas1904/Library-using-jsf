@@ -1,0 +1,107 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+      template="../../WEB-INF/templates/newTemplate3.xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    
+    <ui:define name="content">
+        <div id="right_column">
+        <div id="bookinfo">
+            <ui:param name="book" value="#{controller.getCzytelnikById(request.getParameter('id'))}" />
+
+            <div id="left_bi">
+                <p class="book_title">${book.imie} ${book.nazwisko}</p>
+                <br />
+                    <p>
+                        <h:panelGroup id="pg-1" rendered="${book.stopien == 1}">
+                            Użytkownik
+                        </h:panelGroup>    
+                        <h:panelGroup id="pg-2" rendered="${book.stopien == 2}">
+                            Pracownik
+                        </h:panelGroup> 
+                        <h:panelGroup id="pg-3" rendered="${book.stopien gt 2}">
+                            Administrator
+                        </h:panelGroup> 
+                    </p>
+                <h:form>
+                    <h:selectOneMenu value="#{controller.stopienCzyt}">
+                        <f:selectItems value="#{controller.stopnie}"  var="c"
+                        itemLabel="#{c[1]}" itemValue="#{c[0]}" />
+                        
+                    </h:selectOneMenu>
+                
+                    <h:commandButton rendered="true" action="${controller.changeStopien}" value="Zmień stopień" >
+                        <f:param value="#{book.idCzytelnika}" name="id" />
+                    </h:commandButton>
+                </h:form>
+
+                <p>Adres: ${book.ulica}, ${book.miasto}</p>
+                <p>e-mail: ${book.mail}</p>
+                 <div id="info">
+                    <div class="modul">
+                        <h2>Wypożyczenia</h2>
+                        <table border="0" cellspacing="5">
+                            <thead>
+                                <tr>
+                                    <th>ISBN</th>
+                                    <th>Data wypożyczenia</th>
+                                    <th>Data oddania</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            <ui:repeat var="usrnt" value="${controller.getWypozyczeniaById(book.idCzytelnika)}">    
+                                <tr>
+                                    <td>${usrnt[0]}</td>
+                                    <td>${usrnt[4]}</td>
+                                    <td>${usrnt[5]}</td>
+                                    <td>${usrnt[3]}</td>
+                                </tr>
+                            </ui:repeat>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+<div id="right_bi">
+                <h:panelGroup id="pg1" rendered="#{book.aktywny == true}">
+                    <p style="color: #66aa55">Aktywny</p>
+                </h:panelGroup>    
+                <h:panelGroup id="pg2" rendered="#{book.aktywny == false}">
+                    <p style="color: #ff6655">Nieaktywny</p>
+                </h:panelGroup>
+                
+                <h:form id="formas" >
+                    <h:commandButton rendered="true" action="${controller.activate(1)}" value="Aktywuj" >
+                        <f:param value="#{book.idCzytelnika}" name="id" />
+                    </h:commandButton>
+                    <h:commandButton rendered="true" action="${controller.activate(0)}" value="Dezaktywuj" >
+                        <f:param value="#{book.idCzytelnika}" name="id" />
+                    </h:commandButton>
+                    <h:panelGroup id="pg3" rendered="#{book.blokada == false}">
+                        <p style="color: #66aa55">Niezablokowany</p>
+                    </h:panelGroup>
+                    <h:panelGroup id="pg4" rendered="#{book.blokada == true}">
+                        <p style="color: #ff6655">Zablokowany</p>
+                    </h:panelGroup>
+                    <h:commandButton rendered="true" action="${controller.block(1)}" value="Blokuj">
+                        <f:param value="#{book.idCzytelnika}" name="id" />
+                    </h:commandButton>
+                    <h:commandButton rendered="true" action="${controller.block(0)}" value="Odblokuj">
+                        <f:param value="#{book.idCzytelnika}" name="id" />
+                    </h:commandButton>
+                    
+                        <br />
+                    Kara <p style="color: #ff6655">${book.kara}</p>
+                    <h:commandButton action="${controller.delete()}" value="Usuń">
+                        <f:param value="#{book.idCzytelnika}" name="id" />
+                    </h:commandButton>
+                </h:form> 
+        </div>
+        </div>
+            </div>
+    </ui:define>
+</ui:composition>
